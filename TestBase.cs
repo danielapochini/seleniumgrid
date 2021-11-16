@@ -21,8 +21,7 @@ namespace SeleniumGrid
         }
 
         public void SetUpChrome()
-        {
-
+        { 
             ChromeOptions chromeOptions = new ChromeOptions(); 
             chromeOptions.AddArguments("--start-maximized");  
             chromeOptions.AddAdditionalOption("se:recordVideo", true);
@@ -44,6 +43,8 @@ namespace SeleniumGrid
             FirefoxOptions firefoxOptions = new FirefoxOptions();
             firefoxOptions.AddAdditionalOption("se:recordVideo", true);
             firefoxOptions.AddAdditionalOption("se:screenResolution", "1920x1080");
+            firefoxOptions.AddArgument("--width=1920");
+            firefoxOptions.AddArgument("--height=1080");
             SetUpRemoteDriver(firefoxOptions);
         }
 
