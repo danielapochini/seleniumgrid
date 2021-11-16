@@ -1,0 +1,84 @@
+# To execute this docker-compose yml file use `docker-compose -f docker-compose-v3-video.yml up`
+# Add the `-d` flag at the end for detached execution
+# To stop the execution, hit Ctrl+C, and then `docker-compose -f docker-compose-v3-video.yml down`
+version: "3"
+services:
+  chrome:
+    image: selenium/node-chrome:latest
+    shm_size: 2gb
+    depends_on:
+      - selenium-default-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443 
+      - SE_NODE_SESSION_TIMEOUT=30 
+      - SE_SESSION_REQUEST_TIMEOUT=50
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+
+  edge:
+    image: selenium/node-edge:latest
+    shm_size: 2gb
+    depends_on:
+      - selenium-default-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443 
+      - SE_NODE_SESSION_TIMEOUT=30 
+      - SE_SESSION_REQUEST_TIMEOUT=50
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+
+  firefox:
+    image: selenium/node-firefox:latest
+    shm_size: 2gb
+    depends_on:
+      - selenium-default-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443 
+      - SE_NODE_SESSION_TIMEOUT=30 
+      - SE_SESSION_REQUEST_TIMEOUT=50
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+
+  chrome_video:
+    image: selenium/video:latest
+    volumes:
+      - ./videos:/videos
+    depends_on:
+      - selenium-default-hub
+    environment:
+      - DISPLAY_CONTAINER_NAME=chrome
+      - FILE_NAME=chrome_video.mp4
+
+  edge_video:
+    image: selenium/video:latest
+    volumes:
+      - ./videos:/videos
+    depends_on:
+      - edge
+    environment:
+      - DISPLAY_CONTAINER_NAME=edge
+      - FILE_NAME=edge_video.mp4
+
+  firefox_video:
+    image: selenium/video:latest
+    volumes:
+      - ./videos:/videos
+    depends_on:
+      - firefox
+    environment:
+      - DISPLAY_CONTAINER_NAME=firefox
+      - FILE_NAME=firefox_video.mp4
+
+  selenium-hub:
+    image: selenium/hub:latest
+    container_name: selenium-default-hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444" 
