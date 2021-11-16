@@ -10,6 +10,7 @@ namespace SeleniumGrid
     public class TestBase : IDisposable
     {
         public IWebDriver Driver { get; set; }
+         
         public string hubGridUrl = "http://localhost:4444/";
         public TimeSpan timeSpan = new TimeSpan(0, 3, 0);
 
@@ -21,10 +22,11 @@ namespace SeleniumGrid
 
         public void SetUpChrome()
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArguments("--start-maximized");
-            //chromeOptions.AddAdditionalOption("se:recordVideo", true);
-            //chromeOptions.AddAdditionalOption("se:screenResolution", "1920x1080");
+
+            ChromeOptions chromeOptions = new ChromeOptions(); 
+            chromeOptions.AddArguments("--start-maximized");  
+            chromeOptions.AddAdditionalOption("se:recordVideo", true);
+            chromeOptions.AddAdditionalOption("se:screenResolution", "1920x1080");
             SetUpRemoteDriver(chromeOptions);
         }
 
@@ -32,16 +34,16 @@ namespace SeleniumGrid
         {
             EdgeOptions edgeOptions = new EdgeOptions();
             edgeOptions.AddArguments("--start-maximized");
-            //edgeOptions.AddAdditionalOption("se:recordVideo", true);
-            //edgeOptions.AddAdditionalOption("se:screenResolution", "1920x1080");
+            edgeOptions.AddAdditionalOption("se:recordVideo", true);
+            edgeOptions.AddAdditionalOption("se:screenResolution", "1920x1080");
             SetUpRemoteDriver(edgeOptions);
         }
 
         public void SetUpFirefox()
         {
             FirefoxOptions firefoxOptions = new FirefoxOptions();
-            //firefoxOptions.AddAdditionalOption("se:recordVideo", true);
-            //firefoxOptions.AddAdditionalOption("se:screenResolution", "1920x1080");
+            firefoxOptions.AddAdditionalOption("se:recordVideo", true);
+            firefoxOptions.AddAdditionalOption("se:screenResolution", "1920x1080");
             SetUpRemoteDriver(firefoxOptions);
         }
 
