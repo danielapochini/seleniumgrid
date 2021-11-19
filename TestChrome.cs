@@ -1,14 +1,15 @@
 using System;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using Xunit;
 
 namespace SeleniumGrid
 {
-    public class TestChrome : TestBase
+    public class TestChrome : BaseTest
     {
         public TestChrome()
         {
-            SetUpChrome();
+            SetUpBrowser(new ChromeOptions());
         }
 
         [Fact]

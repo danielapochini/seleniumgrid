@@ -1,13 +1,14 @@
 using OpenQA.Selenium;
+using OpenQA.Selenium.Edge;
 using Xunit;
 
 namespace SeleniumGrid
 {
-    public class TestEdge : TestBase
-    {
-        public TestEdge()
+    public class TestEdge : BaseTest
+    {  
+        public TestEdge()  
         {
-            SetUpEdge();
+            SetUpBrowser(new EdgeOptions());
         }
 
         [Fact]

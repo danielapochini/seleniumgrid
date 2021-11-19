@@ -1,14 +1,15 @@
 using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
 using Xunit;
 
 namespace SeleniumGrid
 {
-    public class TestFirefox : TestBase
+    public class TestFirefox : BaseTest
     {
         public TestFirefox()
         {
-            SetUpFirefox();
-        }
+            SetUpBrowser(new FirefoxOptions());
+        } 
 
         [Fact]
         public void TestFirefoxNode()
