@@ -1,9 +1,9 @@
-using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using SeleniumGrid.Base;
 using Xunit;
 
-namespace SeleniumGrid
+namespace SeleniumGrid.Tests
 {
     public class TestChrome : BaseTest
     {
@@ -23,6 +23,6 @@ namespace SeleniumGrid
             string mensagemAtual = Driver.FindElement(By.XPath("//div[@class='error-message-container error']//h3")).Text;
 
             Assert.Equal(mensagemEsperada, mensagemAtual);
-        } 
+        }
     }
 }

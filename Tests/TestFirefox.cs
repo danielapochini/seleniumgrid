@@ -1,15 +1,16 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using SeleniumGrid.Base;
 using Xunit;
 
-namespace SeleniumGrid
+namespace SeleniumGrid.Tests
 {
     public class TestFirefox : BaseTest
     {
         public TestFirefox()
         {
             SetUpRemoteDriver(new FirefoxOptions());
-        } 
+        }
 
         [Fact]
         public void TestFirefoxNode()
@@ -23,6 +24,6 @@ namespace SeleniumGrid
 
             Assert.Equal(mensagemEsperada, mensagemAtual);
         }
-        
+
     }
 }

@@ -1,12 +1,13 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
+using SeleniumGrid.Base;
 using Xunit;
 
-namespace SeleniumGrid
+namespace SeleniumGrid.Tests
 {
     public class TestEdge : BaseTest
-    {  
-        public TestEdge()  
+    {
+        public TestEdge()
         {
             SetUpRemoteDriver(new EdgeOptions());
         }

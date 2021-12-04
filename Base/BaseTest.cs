@@ -1,44 +1,40 @@
 using System;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Chromium;
-using OpenQA.Selenium.Edge;
-using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 
-namespace SeleniumGrid
+namespace SeleniumGrid.Base
 {
     public class BaseTest : IDisposable
     {
-        public IWebDriver Driver { get; set; } 
-        public Uri _seleniumGridUri = new Uri("http://localhost:4444/"); 
-        public TimeSpan _timeSpan = new TimeSpan(0, 3, 0);   
+        protected IWebDriver Driver { get; set; }
+        private readonly Uri _seleniumGridUri = new("http://localhost:4444/");
+        private readonly TimeSpan _timeoutTimeSpan = new(0, 3, 0);
 
-        public void SetUpRemoteDriver(DriverOptions driverOptions)
+        protected void SetUpRemoteDriver(DriverOptions driverOptions)
         {
-            SetAdditionalDriverOptions(driverOptions); 
+            SetAdditionalDriverOptions(driverOptions);
             SetDriverConnection(driverOptions);
         }
 
-        public void SetAdditionalDriverOptions(DriverOptions driverOptions)
+        private void SetAdditionalDriverOptions(DriverOptions driverOptions)
         {
             driverOptions.AddAdditionalOption("se:recordVideo", true);
             driverOptions.AddAdditionalOption("se:screenResolution", "1920x1080");
         }
- 
-        public void SetDriverConnection(DriverOptions driverOptions)
-        { 
+
+        private void SetDriverConnection(DriverOptions driverOptions)
+        {
             Driver = new RemoteWebDriver(
-                _seleniumGridUri, driverOptions.ToCapabilities(), _timeSpan);
+                _seleniumGridUri, driverOptions.ToCapabilities(), _timeoutTimeSpan);
             Driver.Manage().Window.Maximize();
         }
- 
+
         public void Dispose()
         {
             TearDown();
         }
 
-        public void TearDown()
+        private void TearDown()
         {
             if (Driver != null)
             {
