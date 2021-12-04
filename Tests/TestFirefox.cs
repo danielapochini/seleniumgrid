@@ -1,18 +1,18 @@
 using OpenQA.Selenium;
-using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
 using Xunit;
 
 namespace SeleniumGrid
 {
-    public class TestEdge : BaseTest
-    {  
-        public TestEdge()  
+    public class TestFirefox : BaseTest
+    {
+        public TestFirefox()
         {
-            SetUpBrowser(new EdgeOptions());
-        }
+            SetUpRemoteDriver(new FirefoxOptions());
+        } 
 
         [Fact]
-        public void TestEdgeNode()
+        public void TestFirefoxNode()
         {
             Driver.Navigate().GoToUrl("https://www.saucedemo.com/");
             Driver.FindElement(By.Id("user-name")).SendKeys("Teste");
@@ -23,5 +23,6 @@ namespace SeleniumGrid
 
             Assert.Equal(mensagemEsperada, mensagemAtual);
         }
+        
     }
 }

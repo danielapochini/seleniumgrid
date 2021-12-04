@@ -9,7 +9,7 @@ namespace SeleniumGrid
     {
         public TestChrome()
         {
-            SetUpBrowser(new ChromeOptions());
+            SetUpRemoteDriver(new ChromeOptions());
         }
 
         [Fact]
@@ -23,6 +23,6 @@ namespace SeleniumGrid
             string mensagemAtual = Driver.FindElement(By.XPath("//div[@class='error-message-container error']//h3")).Text;
 
             Assert.Equal(mensagemEsperada, mensagemAtual);
-        }
+        } 
     }
 }
