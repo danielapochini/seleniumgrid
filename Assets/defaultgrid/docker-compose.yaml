@@ -4,12 +4,12 @@
 version: "3"
 services:
   chrome:
-    image: selenium/node-chrome:4.1.0-prerelease-20211105
+    image: selenium/node-chrome:4.1.1-20211217
     shm_size: 2gb
     depends_on:
-      - selenium-hub
+      - selenium-default-hub
     environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_HOST=selenium-default-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443  
       - SE_NODE_SESSION_TIMEOUT=30
@@ -18,12 +18,12 @@ services:
       - SCREEN_HEIGHT=1080
 
   edge:
-    image: selenium/node-edge:4.1.0-prerelease-20211105
+    image: selenium/node-edge:4.1.1-20211217
     shm_size: 2gb
     depends_on:
-      - selenium-hub
+      - selenium-default-hub
     environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_HOST=selenium-default-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_GRID_URL=http://localhost:4444
@@ -33,12 +33,12 @@ services:
       - SCREEN_HEIGHT=1080
 
   firefox:
-    image: selenium/node-firefox:4.1.0-prerelease-20211105
+    image: selenium/node-firefox:4.1.1-20211217
     shm_size: 2gb
     depends_on:
-      - selenium-hub
+      - selenium-default-hub
     environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_HOST=selenium-default-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_GRID_URL=http://localhost:4444
@@ -47,9 +47,9 @@ services:
       - SCREEN_WIDTH=1920
       - SCREEN_HEIGHT=1080
 
-  selenium-hub:
-    image: selenium/hub:4.1.0-prerelease-20211105
-    container_name: selenium-hub
+  selenium-default-hub:
+    image: selenium/hub:4.1.1-20211217
+    container_name: selenium-default-hub
     ports:
       - "4442:4442"
       - "4443:4443"

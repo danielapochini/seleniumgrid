@@ -4,7 +4,7 @@
 version: "3"
 services:
   node-docker:
-    image: selenium/node-docker:4.1.0-prerelease-20211105
+    image: selenium/node-docker:4.1.1-20211217
     volumes:
       - ./assets:/opt/selenium/assets
       - ./config.toml:/opt/bin/config.toml
@@ -16,7 +16,7 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
 
   selenium-grid-hub:
-    image: selenium/hub:4.1.0-prerelease-20211105
+    image: selenium/hub:4.1.1-20211217
     container_name: selenium-grid-hub
     ports:
       - "4442:4442"
